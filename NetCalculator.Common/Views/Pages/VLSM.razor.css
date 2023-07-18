@@ -1,0 +1,23 @@
+﻿table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;
+  border: 2px solid #999;
+  text-align: center;
+}
+
+.failed {
+    /*color: red;*/
+}
+
+.failed td {
+    background-color: #ff000045;
+}
+
+td.subnets {
+    padding: 0;
+}

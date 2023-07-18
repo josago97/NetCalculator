@@ -1,0 +1,53 @@
+﻿:root {
+    --app-color: RoyalBlue;
+}
+
+body {
+    min-height: 100%;
+    transition-property: background-color, color;
+    transition-duration: 0.25s;
+}
+
+#app {
+    min-height: 100%;
+}
+
+.dark {
+    --app-color: DarkBlue;
+
+    background-color: #000000cc;
+    color: white;
+}
+
+form {
+
+}
+
+/*============== Net Pages ==============*/
+section .title {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+section.input {
+    margin-top: 10px;
+}
+
+.input table {
+    width: 100%;
+}
+
+section.input input[type="submit"] {
+    display: block;
+    margin: 10px auto 0px;
+}
+
+section.output {
+    margin-top: 40px;
+}
+
+.output table {
+    width: 100%;
+}
+
+/*=======================================*/

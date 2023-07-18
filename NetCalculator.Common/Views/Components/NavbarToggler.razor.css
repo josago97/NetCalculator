@@ -1,0 +1,66 @@
+﻿
+/*=================== Navbar Toggler ==================*/
+
+.nav-toggler {
+    --icon-height: 100%;
+    --icon-width: 100%;
+    --line-height: 2px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+/*========== Burguer Button =========*/
+
+.icon-burguer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.icon-burguer > div {
+    position: relative;
+    height: var(--line-height);
+    background-color: #fff;
+    transition: 0.25s;
+    border-radius: var(--line-height);
+}
+
+/*============== Burguer Button Animation ================*/
+
+input {
+    display: none;
+    visibility: hidden;
+}
+
+input:checked ~ .icon-burguer {
+    justify-content: center;
+}
+
+input:checked ~ .icon-burguer > div {
+    --offset: var(--line-height);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(1) {
+    transform: translateY(var(--offset)) rotate(45deg);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(2) {
+    opacity: 0;
+}
+
+input:checked ~ .icon-burguer > div:nth-child(3) {
+    transform: translateY(calc(var(--offset) / -1)) rotate(-45deg);
+}
+
+/*=============================================*/

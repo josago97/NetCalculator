@@ -1,0 +1,67 @@
+﻿@page "/net"
+@using NetCalculator.Common.Models.Netting;
+@inherits BaseNetPage
+
+
+<section class="input">
+    <h3 class="title">Entrada</h3>
+    <EditForm Model="this" OnValidSubmit="Calculate">
+        <DataAnnotationsValidator />
+        <InputNetAddress @bind-Value=NetAddress />
+        <input type="submit" value="@Localization.Localization.CalculateLabel" />
+    </EditForm>
+</section>
+
+<section id="@RESULT_ID" class="output">
+    @if (Result != null)
+    {
+        <h3 class="title">Resultado</h3>
+
+        <p>
+            <h5>Dirección de red</h5>
+            IP red: @Result.Address.Ip
+            <br/>
+            Máscara: @Utils.MaskIntToString(Result.Address.Mask) (/@Result.Address.Mask)
+        </p>
+
+        <p>
+            <h5>Puerta de enlace predeterminada</h5>
+            @Result.DefaultGatewayAddress
+        </p>
+
+        <p>
+            <h5>Dirección de broadcast</h5>
+            @Result.Broadcast
+        </p>
+
+        <p>
+            <h5>Rango de hosts</h5>
+            <table>
+                <tr>
+                    <td>
+                        <h6>Desde</h6>
+                        @Result.FirstAssignableAddress
+                    </td>
+                    <td>
+                        <h6>Hasta</h6>
+                        @Result.LastAssignableAddress
+                    </td>
+                </tr>
+            </table>
+        </p>
+    }
+</section>
+
+@code {
+    private bool HasResult { get; set; } = false;
+    private Calculator Calculator { get; set; } = new Calculator();
+    private Response Result { get; set; }
+
+    private void Calculate()
+    {
+        Request request = new Request { NetAddress = NetAddress.Value };
+        Result = Calculator.Calculate(request);
+
+        GoToResults();
+    }
+}

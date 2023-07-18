@@ -1,0 +1,206 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System.Linq.Expressions;
+@using System.Text;
+@inherits InputBase<NetAddress?>
+
+<table>
+    <tr>
+        <td>
+            @Localization.Localization.NetLabel
+        </td>
+        <td>
+            @if (UseCIDR)
+            {
+                <InputText @bind-Value=NetAddressCIDR id="net" placeholder="192.168.1.0/24"
+                           required minlength="9" maxlength="18" size="18"
+                           pattern="@($"^{NET_ADDRESS_CIDR_REGEX}$")" title="X.X.X.X/X" />
+            }
+            else
+            {
+                <InputText @bind-Value=IPAddress id="net" placeholder="192.168.1.0"
+                           required minlength="7" maxlength="15" size="15"
+                           pattern="@($"^{IP_ADDRESS_REGEX}$")" title="X.X.X.X" />
+            }
+        </td>
+        <td class="desktop">
+            <InputCheckbox @bind-Value=UseCIDR />
+            @Localization.Localization.UseCIDRLabel
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            @if (UseCIDR)
+            {
+                <ValidationMessage For="() => NetAddressCIDR" />
+            }
+            else
+            {
+                <ValidationMessage For="() => IPAddress" />
+            }
+        </td> 
+    </tr>
+    @if (!UseCIDR)
+    {
+        <tr>
+            <td>
+                @Localization.Localization.MaskLabel
+            </td>
+            <td>
+                <InputText @bind-Value=Mask id="mask" placeholder="255.255.255.0"
+                           required minlength="7" maxlength="15" size="15"
+                           pattern="@($"^{IP_ADDRESS_REGEX}$")" title="X.X.X.X" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <ValidationMessage For="() => Mask" />
+            </td>
+        </tr>
+        
+    }
+
+    <tr class="mobile">
+        <td></td>
+        <td colspan="2">
+            <InputCheckbox @bind-Value=UseCIDR />
+            @Localization.Localization.UseCIDRLabel
+        </td>
+    </tr>
+
+</table>
+
+@code {
+    private const string IP_ADDRESS_REGEX = @"(\d{1,3}\.){3}\d{1,3}";
+    private static readonly string NET_ADDRESS_CIDR_REGEX = $@"{IP_ADDRESS_REGEX}\/\d{{1,2}}";
+    private static readonly int[] MASK_BYTE_VALUES = { 0, 128, 192, 224, 240, 252, 254, 255 };
+
+    [Parameter]
+    public bool UseCIDR { get; set; }
+
+    private string NetAddressCIDR { get; set; }
+    private string IPAddress { get; set; }
+    private string Mask { get; set; }
+    private ValidationMessageStore ValidationMessages { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        ValidationMessages = new ValidationMessageStore(EditContext);
+        EditContext.OnValidationRequested += OnValidationRequested;
+
+        if (CurrentValue.HasValue)
+        {
+            NetAddress netAddress = CurrentValue.Value;
+            NetAddressCIDR = $"{netAddress.Ip}/{netAddress.Mask}";
+            IPAddress = netAddress.Ip.ToString();
+            Mask = Utils.MaskIntToString(netAddress.Mask);
+        } 
+    }
+
+    protected override bool TryParseValueFromString(string value, out NetAddress? result, out string validationErrorMessage)
+    {
+        result = CurrentValue;
+        validationErrorMessage = null;
+
+        return true;
+    }
+
+    private void OnValidationRequested(object sender, ValidationRequestedEventArgs args)
+    {
+        bool isCorrect = false;
+        ValidationMessages.Clear(); 
+
+        if (UseCIDR)
+        {
+            isCorrect = ValidateCIDR();
+        }
+        else
+        {
+            isCorrect = ValidateIp() && ValidateMask();
+        }
+
+        if (isCorrect)
+        {
+            CurrentValue = GetNetAddress();
+        }
+    }
+
+    private bool ValidateCIDR()
+    {
+        bool isCorrect = true;
+        Expression<Func<object>> accessor = () => NetAddressCIDR;
+        string[] ipAndMask = NetAddressCIDR.Split('/');
+
+        string ipAddress = ipAndMask[0];
+        isCorrect = ValidateAddress(ipAddress, accessor);
+
+        string mask = ipAndMask[1];
+        if (!int.TryParse(mask, out int maskValue) || (maskValue < 0 || maskValue > 32))
+        {
+            string errorMessage = string.Format(Localization.Localization.MaskCIDROutOfRange, "[0 - 32]");
+            ValidationMessages.Add(accessor, errorMessage);
+            isCorrect = false;
+        }
+
+        return isCorrect;
+    }
+
+    private bool ValidateIp()
+    {
+        Expression<Func<object>> accessor = () => IPAddress;
+
+        return ValidateAddress(IPAddress, accessor);
+    }
+
+    private bool ValidateMask()
+    {
+        Expression<Func<object>> accessor = () => Mask;
+
+        return ValidateAddress(Mask, accessor, true);
+    }
+
+    private bool ValidateAddress(string address, Expression<Func<object>> accessor, bool isMask = false)
+    {
+        bool isCorrect = true;
+        string[] bytes = address.Split('.');
+
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            bool isNumber = int.TryParse(bytes[i], out int byteValue);
+
+            if (!isNumber || (byteValue < 0 || byteValue > byte.MaxValue))
+            {
+                string errorMessage = string.Format(Localization.Localization.ByteOutOfRangeError, i, "[0 - 255]");
+                ValidationMessages.Add(accessor, errorMessage);
+                isCorrect = false;
+            }
+            // A byte of a mask must have all 1s together
+            else if (isMask && !MASK_BYTE_VALUES.Contains(byteValue))
+            {
+                string binary = Convert.ToString(byteValue, 2);
+                string errorMessage = string.Format(Localization.Localization.MaskByteInvalidValueError, i, binary);
+                ValidationMessages.Add(accessor, errorMessage);
+                isCorrect = false;
+            }
+        }
+
+        return isCorrect;
+    }
+
+    private NetAddress GetNetAddress()
+    {
+        NetAddress result;
+
+        if (UseCIDR)
+        {
+            result = NetAddress.Parse(NetAddressCIDR);
+        }
+        else
+        {
+            result = NetAddress.Parse(IPAddress, Mask);
+        }
+
+        return result;
+    }
+}

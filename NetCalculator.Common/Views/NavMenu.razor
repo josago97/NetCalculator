@@ -1,0 +1,94 @@
+﻿@inject JSInterop JSInterop
+@inject NavigationManager NavigationManager
+
+<nav>
+    <header>
+        <div>
+            <span class="pointer">
+                <NavbarToggler @bind-IsMenuCollapsed="IsMenuCollapsed" />
+            </span>
+            <span>@Title</span>
+        </div>
+        <div class="pointer">
+            <button @onclick="ChangeMode">
+                <span class="oi oi-@(IsDarkMode ? "moon" : "sun")"></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="@NavMenuCssClass">
+        @foreach (KeyValuePair<string, string> route in ROUTES)
+        {
+            <NavLink class="nav-link" href="@route.Key" @onclick="CloseMenu">
+                @route.Value
+            </NavLink>
+        }
+    </section>
+
+    <div class="background @NavMenuCssClass" @onclick="CloseMenu"></div>
+</nav>
+
+@code {
+    private static Dictionary<string, string> ROUTES = new Dictionary<string, string>()
+    {
+        { "net", "Red" },
+        { "flsm", "Máscara fija (FLSM)"},
+        { "vlsm", "Máscara variable (VLSM)"}
+    };
+
+    private string Title { get; set; }
+    private bool IsMenuCollapsed { get; set; } = true;
+    private string NavMenuCssClass => IsMenuCollapsed ? "hide" : null;
+
+    [Parameter] public bool IsDarkMode { get; set; } = false;
+    [Parameter] public EventCallback<bool> IsDarkModeChanged { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        NavigationManager.LocationChanged += OnLocationChanged; 
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        OnLocationChanged(NavigationManager.Uri);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        await JSInterop.ChangeThemeAsync(IsDarkMode);
+    }
+
+    private void CloseMenu()
+    {
+        IsMenuCollapsed = true;
+    }
+
+    private async void ChangeMode()
+    {
+        IsDarkMode = !IsDarkMode;
+        await IsDarkModeChanged.InvokeAsync(IsDarkMode);
+        await JSInterop.ChangeThemeAsync(IsDarkMode);
+    }
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs args)
+    {
+        OnLocationChanged(args.Location);
+        StateHasChanged();
+    }
+
+    private void OnLocationChanged(string location)
+    {
+        string relativePath = NavigationManager.ToBaseRelativePath(location);
+
+        if (ROUTES.TryGetValue(relativePath, out string title))
+            Title = title;
+        else
+            Title = "Por defecto";
+    }
+}

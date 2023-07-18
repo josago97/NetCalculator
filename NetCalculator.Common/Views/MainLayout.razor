@@ -1,0 +1,13 @@
+﻿@inherits LayoutComponentBase
+
+<NavMenu @ref=NavMenu @bind-IsDarkMode="IsDarkMode" />
+
+<main>
+    @Body
+</main>
+
+@code {
+
+    private NavMenu NavMenu { get; set; }
+    private bool IsDarkMode { get; set; }
+}

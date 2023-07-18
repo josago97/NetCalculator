@@ -1,0 +1,308 @@
+﻿@page "/vlsm"
+@using NetCalculator.Common.Models.Subnetting.VLSM;
+@inherits BaseNetPage
+
+<section class="input">
+    <h3 class="title">Entrada</h3>
+    <EditForm Model="this" OnValidSubmit="Calculate">
+        <DataAnnotationsValidator />
+        <div>
+            <h5>Red principal</h5>
+            <InputNetAddress @bind-Value=NetAddress />
+        </div>
+        <br />
+        <div>
+            <h5>Subredes</h5>
+            <table class="subnets">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < SubnetInputs.Count; i++)
+                    {
+                        SubnetInput subnetInput = SubnetInputs[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td><InputText @bind-Value=subnetInput.Name /></td>
+                            <td><InputNumber @bind-Value=subnetInput.Hosts min="1" max="@uint.MaxValue" /></td>
+                            @if (SubnetInputs.Count > 1)
+                            {
+                                <td>
+                                    <button @onclick="@(e => DeleteSubnetInput(subnetInput))">
+                                        <span class="oi oi-trash" aria-hidden="true" />
+                                    </button>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <button @onclick=AddSubnetInput>Add</button>
+        </div>
+        <input type="submit" value="CalculateLabel" />
+    </EditForm>
+</section>
+
+<section id="@RESULT_ID" class="output">
+    @if (Result != null)
+    {
+        <h3 class="title">Resultado</h3>
+        <p>
+            <h5>Red principal</h5>
+            IP red: @Result.NetAddress.Ip
+            <br />
+            Máscara: @Utils.MaskIntToString(Result.NetAddress.Mask) (/@Result.NetAddress.Mask)
+            <br />
+            Available IP addresses in major network: @Result.NetAddress.Size
+        </p>
+
+        <h5>Subredes</h5>
+        <table class="subnets">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Hosts</th>
+                    <th>Address</th>
+                    <th>Mask</th>
+                    <th>Primer Host</th>
+                    <th>Último Host</th>
+                    <th>Broadcast</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < @Result.Subnets.Count; i++)
+                {
+                    SubnetResponse subnetOutput = Result.Subnets[i];
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>LAN @(i + 1)</td>
+                        <td>@subnetOutput.Hosts</td>
+                        <td>@subnetOutput.Address.Ip</td>
+                        <td>@Utils.MaskIntToString(subnetOutput.Address.Mask) (/@subnetOutput.Address.Mask)</td>
+                        <td>@subnetOutput.FirstAssignableAddress</td>
+                        <td>@subnetOutput.LastAssignableAddress</td>
+                        <td>@subnetOutput.Broadcast</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</section>
+
+@code {
+    private const int DEFAULT_SUBNET_INPUT_COUNT = 3;
+    private const int INITIAL_SUBNETS_SIZE = 50;
+
+    private IList<SubnetInput> SubnetInputs { get; set; }
+    private Calculator Calculator { get; set; } = new Calculator();
+    private Response Result { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SubnetInputs = new List<SubnetInput>();
+
+        for (int i = 0; i < DEFAULT_SUBNET_INPUT_COUNT; i++)
+        {
+            AddSubnetInput();
+        }
+    }
+
+    private void AddSubnetInput()
+    {
+        SubnetInputs.Add(new SubnetInput()
+        {
+            Name = ((char)('A' + SubnetInputs.Count)).ToString(),
+            Hosts = INITIAL_SUBNETS_SIZE
+        });
+    }
+
+    private void DeleteSubnetInput(SubnetInput subnetInput)
+    {
+        SubnetInputs.Remove(subnetInput);
+    }
+
+    private void Calculate()
+    {
+        Request request = new Request()
+        {
+            NetAddress = NetAddress.Value,
+            Subnets = SubnetInputs.ToArray()
+        };
+
+        Result = Calculator.Calculate(request);
+        GoToResults();
+    }
+
+    private class SubnetInput : SubnetRequest
+    {
+        public new long Hosts { get => base.Hosts; set => base.Hosts = (uint)value; }
+    }
+}
+
+
+
+
+<!--
+@page "/vlsm"
+@using NetCalculator.Common.Models.Subnetting.VLSM;
+@using NetCalculator.Common.Models.Subnetting.VLSM;
+@using SubnetCalculator.Models;
+@using SubnetCalculator.Models.Subnetting.VLSM;
+@inject NavigationManager NavigationManager
+@inject Localizer Localizer
+
+<h1>VLSM</h1>
+
+<div>
+    <EditForm Model="this" OnValidSubmit="Calculate">
+        <DataAnnotationsValidator />
+        <table>
+            <tr>
+                <td>Major network</td>
+                <td>
+                    <InputNetAddress @bind-Value=NetAddress />
+                </td>
+            </tr>
+            <tr>
+                <td>Subnets</td>
+                <td class="subnets">
+                    <table class="subnets">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < SubnetInputs.Count; i++)
+                            {
+                                SubnetRequest subnetInput = SubnetInputs[i];
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td><InputText @bind-Value=subnetInput.Name /></td>
+                                    <td><InputNumber @bind-Value=subnetInput.Size min="1" max="@uint.MaxValue" /></td>
+                                    @if (SubnetInputs.Count > 1)
+                                    {
+                                        <td>
+                                            <button @onclick="@(e => DeleteSubnetInput(subnetInput))">
+                                                <span class="oi oi-trash" aria-hidden="true" />
+                                            </button>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <button @onclick=AddSubnetInput>Add</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="@Localizer.CalculateLabel" />
+                </td>
+            </tr>
+        </table>        
+    </EditForm>
+</div>
+
+<br />
+
+@if (SubnetOutputs != null)
+{
+    <h2 id="results">Results</h2>
+    <h2>Subnetting Success</h2>
+    <p>Major Network: MajorNetwork</p>
+    <p>Available IP addresses in major network: MajorNetwork</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Needed size</th>
+                <th>Allocated size</th>
+                <th>Address</th>
+                <th>Mask</th>
+                <th>Assignable range</th>
+                <th>Broadcast</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < SubnetOutputs.Count; i++)
+            {
+                SubnetResponse subnetOutput = SubnetOutputs[i];
+                <tr class="@(subnetOutput.AllocatedSize > 0 ? "failed" : null)">
+                    <td>@(i + 1)</td>
+                    <td>@subnetOutput.Name</td>
+                    <td>@subnetOutput.NeededSize</td>
+                    <td>@subnetOutput.AllocatedSize</td>
+                    <td>@subnetOutput.Address</td>
+                    <td>/@subnetOutput.Mask</td>
+                    <td>@subnetOutput.FirstAssignableAddress - @subnetOutput.LastAssignableAddress</td>
+                    <td>@subnetOutput.Broadcast</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+-->
+@code
+{/*
+    private const string DEFAULT_MAJOR_NETWORK = "192.168.1.0/24";
+    private const int DEFAULT_SUBNET_INPUT_COUNT = 3;
+    private const int INITIAL_SUBNET_SIZE = 50;
+
+    private NetAddress? NetAddress { get; set; }
+    private IList<SubnetRequest> SubnetInputs { get; set; }
+    private bool SubnettingSuccess { get; set; }
+    private IList<SubnetResponse> SubnetOutputs { get; set; }
+    private VariableMaskCalculator Calculator { get; set; }
+
+    protected override void OnInitialized()
+    {
+        //MajorNetwork = DEFAULT_MAJOR_NETWORK;
+        Calculator = new VariableMaskCalculator();
+        SubnetInputs = new List<SubnetRequest>();
+
+        for (int i = 0; i < DEFAULT_SUBNET_INPUT_COUNT; i++)
+        {
+            AddSubnetInput();
+        }
+    }
+
+    private void AddSubnetInput()
+    {
+        SubnetInputs.Add(new SubnetRequest()
+            {
+                Name = ((char)('A' + SubnetInputs.Count)).ToString(),
+                Size = INITIAL_SUBNET_SIZE
+            });
+    }
+
+    private void DeleteSubnetInput(SubnetRequest subnetInput)
+    {
+        SubnetInputs.Remove(subnetInput);
+    }
+
+    private void Calculate()
+    {
+        IPv4Address netIP = NetAddress.Value.IPAddress;
+        int netMask = NetAddress.Value.Mask;
+
+        SubnetOutputs = Calculator.Calculate(netIP, netMask, SubnetInputs);
+
+        StateHasChanged();
+
+        NavigationManager.NavigateTo("/#results", true);
+    }*/
+}

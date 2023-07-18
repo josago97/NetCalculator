@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCalculator.Common", "NetCalculator.Common\NetCalculator.Common.csproj", "{39444C4A-44E8-4333-BED1-3F8166203A43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCalculator.Maui", "NetCalculator.Maui\NetCalculator.Maui.csproj", "{D110B6CD-10ED-4347-BF64-AEFF2B20A409}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCalculator.Wasm", "NetCalculator.Wasm\NetCalculator.Wasm.csproj", "{A1BC157B-E8C5-4F57-AC5F-C25D59E93158}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39444C4A-44E8-4333-BED1-3F8166203A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39444C4A-44E8-4333-BED1-3F8166203A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39444C4A-44E8-4333-BED1-3F8166203A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39444C4A-44E8-4333-BED1-3F8166203A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D110B6CD-10ED-4347-BF64-AEFF2B20A409}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A1BC157B-E8C5-4F57-AC5F-C25D59E93158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BC157B-E8C5-4F57-AC5F-C25D59E93158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BC157B-E8C5-4F57-AC5F-C25D59E93158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BC157B-E8C5-4F57-AC5F-C25D59E93158}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84FFA10D-3982-4961-8542-F68F2E3104ED}
+	EndGlobalSection
+EndGlobal

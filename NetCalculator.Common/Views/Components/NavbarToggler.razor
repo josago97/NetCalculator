@@ -1,0 +1,25 @@
+﻿<div class="nav-toggler" @onclick="OnClicked">
+    <input type="checkbox" @bind="IsMenuOpen" disabled />
+    <label class="icon-burguer" for="navbar-toggler-input">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</div>
+
+@code {
+    [Parameter] public bool IsMenuCollapsed { get; set; }
+    [Parameter] public EventCallback<bool> IsMenuCollapsedChanged { get; set; }
+
+    private bool IsMenuOpen
+    {
+        get => !IsMenuCollapsed;
+        set => IsMenuCollapsed = !value;
+    }
+
+    private void OnClicked()
+    {
+        IsMenuCollapsed = !IsMenuCollapsed;
+        IsMenuCollapsedChanged.InvokeAsync(IsMenuCollapsed);
+    }
+}

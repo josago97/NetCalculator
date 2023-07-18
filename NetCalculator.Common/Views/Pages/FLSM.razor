@@ -1,0 +1,123 @@
+﻿@page "/flsm"
+@using NetCalculator.Common.Models.Subnetting.FLSM;
+@inherits BaseNetPage
+
+<section class="input">
+    <h3 class="title">Entrada</h3>
+    <EditForm Model="this" OnValidSubmit="Calculate">
+        <DataAnnotationsValidator />
+        <div>
+            <h5>Red principal</h5>
+            <InputNetAddress @bind-Value=NetAddress />
+        </div>
+        <br />
+        <div>
+            <h5>Subredes</h5>
+            <table>
+                <tr>
+                    <td>Cantidad</td>
+                    <td>
+                        <InputNumber @bind-Value=SubnetCount min="1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dispositivos</td>
+                    <td>
+                        <InputNumber @bind-Value=SubnetHosts min="1" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="submit" value="CalculateLabel" />
+    </EditForm>
+</section>
+
+<section id="@RESULT_ID" class="output">
+    @if (Result != null)
+    {
+        <h3 class="title">Resultado</h3>
+        <p>
+            <h5>Red principal</h5>
+            IP red: @Result.NetAddress.Ip
+            <br />
+            Máscara: @Utils.MaskIntToString(Result.NetAddress.Mask) (/@Result.NetAddress.Mask)
+            <br />
+            Available IP addresses in major network: @Result.NetAddress.Size
+        </p>
+
+        <h5>Subredes</h5>
+        <table class="subnets">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Hosts</th>
+                    <th>Address</th>
+                    <th>Mask</th>
+                    <th>Primer Host</th>
+                    <th>Último Host</th>
+                    <th>Broadcast</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < @Result.Subnets.Count; i++)
+                {
+                    Subnet subnetOutput = Result.Subnets[i];
+                    <tr>
+                        <td>LAN @(i + 1)</td>
+                        <td>@subnetOutput.Hosts</td>
+                        <td>@subnetOutput.Address.Ip</td>
+                        <td>@Utils.MaskIntToString(subnetOutput.Address.Mask) (/@subnetOutput.Address.Mask)</td>
+                        <td>@subnetOutput.FirstAssignableAddress</td>
+                        <td>@subnetOutput.LastAssignableAddress</td>
+                        <td>@subnetOutput.Broadcast</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</section>
+
+@code {
+    private const int MIN_SUBNET_COUNT = 1;
+    private const int MIN_SUBNET_HOSTS = 1;
+    private const int DEFAULT_SUBNET_INPUT_COUNT = 3;
+    private int _subnetCount;
+    private long _subnetHosts;
+
+    private int SubnetCount { get => _subnetCount; set => SetSubnetCount(value); }
+    private long SubnetHosts { get => _subnetHosts; set => SetSubnetHosts(value); }
+    private Calculator Calculator { get; set; } = new Calculator();
+    private Response Result { get; set; }
+
+    private void SetSubnetCount(int value)
+    {
+        _subnetCount = Math.Max(value, MIN_SUBNET_COUNT);
+
+        int mask = NetAddress.Value.Mask + (int)Math.Ceiling(Math.Log2(_subnetCount));
+        long subnetSize = (long)Math.Pow(2, 32 - mask) - Calculator.RESERVED_ADDRESS_COUNT;
+        _subnetHosts = (uint)Math.Max(subnetSize, 0);
+    }
+
+    private void SetSubnetHosts(long value)
+    {
+        _subnetHosts = Math.Max(value, MIN_SUBNET_HOSTS);
+
+        long subnetSize = _subnetHosts + Calculator.RESERVED_ADDRESS_COUNT;
+        int bitsNeeded = (int)Math.Ceiling(Math.Log2(subnetSize));
+        int mask = 32 - bitsNeeded;
+        _subnetCount = (int)Math.Pow(2, mask - NetAddress.Value.Mask);
+    }
+
+    private void Calculate()
+    {
+        Request request = new Request()
+        {
+            NetAddress = NetAddress.Value,
+            SubnetCount = SubnetCount
+        };
+
+        Result = Calculator.Calculate(request);
+        GoToResults();
+    }
+}
+

@@ -1,0 +1,30 @@
+﻿table {
+    border-collapse: collapse;
+    border: 0px solid transparent;
+}
+
+tr > td + td {
+  border-left-width: 10px;
+}
+
+tr + tr > td {
+  border-top-width: 6px;
+}
+
+.desktop {
+}
+
+.mobile {
+    display: none;
+    text-align: left;
+}
+
+@media(max-width: 400px) {
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: revert;
+    }
+}
