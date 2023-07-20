@@ -1,0 +1,369 @@
+/* _content/NetCalculator.Common/Views/Components/InputNetAddress.razor.rz.scp.css */
+table[b-4godh84p1p] {
+    border-collapse: collapse;
+    border: 0px solid transparent;
+}
+
+tr > td + td[b-4godh84p1p] {
+  border-left-width: 10px;
+}
+
+tr + tr > td[b-4godh84p1p] {
+  border-top-width: 6px;
+}
+
+.desktop[b-4godh84p1p] {
+}
+
+.mobile[b-4godh84p1p] {
+    display: none;
+    text-align: left;
+}
+
+@media(max-width: 400px) {
+    .desktop[b-4godh84p1p] {
+        display: none;
+    }
+
+    .mobile[b-4godh84p1p] {
+        display: revert;
+    }
+}
+/* _content/NetCalculator.Common/Views/Components/NavbarToggler.razor.rz.scp.css */
+
+/*=================== Navbar Toggler ==================*/
+
+.nav-toggler[b-two2d3ysh5] {
+    --icon-height: 100%;
+    --icon-width: 100%;
+    --line-height: 2px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+/*========== Burguer Button =========*/
+
+.icon-burguer[b-two2d3ysh5] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.icon-burguer > div[b-two2d3ysh5] {
+    position: relative;
+    height: var(--line-height);
+    background-color: #fff;
+    transition: 0.25s;
+    border-radius: var(--line-height);
+}
+
+/*============== Burguer Button Animation ================*/
+
+input[b-two2d3ysh5] {
+    display: none;
+    visibility: hidden;
+}
+
+input:checked ~ .icon-burguer[b-two2d3ysh5] {
+    justify-content: center;
+}
+
+input:checked ~ .icon-burguer > div[b-two2d3ysh5] {
+    --offset: var(--line-height);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(1)[b-two2d3ysh5] {
+    transform: translateY(var(--offset)) rotate(45deg);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(2)[b-two2d3ysh5] {
+    opacity: 0;
+}
+
+input:checked ~ .icon-burguer > div:nth-child(3)[b-two2d3ysh5] {
+    transform: translateY(calc(var(--offset) / -1)) rotate(-45deg);
+}
+
+/*=============================================*/
+/* _content/NetCalculator.Common/Views/Components/ResponsiveTable.razor.rz.scp.css */
+table[b-x5ymo50ekg] {
+    text-align: center;
+}
+
+table th[b-x5ymo50ekg], table td[b-x5ymo50ekg] {
+    padding: 0.3em 0.5em;
+}
+
+table[b-x5ymo50ekg], table th[b-x5ymo50ekg], table td[b-x5ymo50ekg] {
+    border: 2px solid var(--border-color);
+}
+
+@media (max-width: 800px) {
+    table[b-x5ymo50ekg] {
+        display: flex;
+        overflow-x: auto;
+        justify-content: left;
+        border-spacing: 0;
+        white-space: nowrap;
+    }
+
+    table thead[b-x5ymo50ekg] {
+        position: sticky;left: 0px;
+        float: left;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: 10px double var(--border-color);
+    }
+
+    table tr[b-x5ymo50ekg] {
+        display: inline-block;
+    }
+
+    table th + th[b-x5ymo50ekg], table td + td[b-x5ymo50ekg] {
+        border-top: 3px solid var(--border-color);
+    }
+
+    table tbody tr[b-x5ymo50ekg] {
+        border-right: 3px solid var(--border-color);
+    }
+    
+    table th[b-x5ymo50ekg], table td[b-x5ymo50ekg] {
+        display: block;
+        text-align: left;
+        border: 0px 5px 5px 5px solid var(--border-color);
+    }
+}
+/* _content/NetCalculator.Common/Views/MainLayout.razor.rz.scp.css */
+main[b-l2z0my0rza] {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    min-height: 100%;
+    
+}
+/* _content/NetCalculator.Common/Views/NavMenu.razor.rz.scp.css */
+nav[b-hj7ki4kx8a] {
+    color: white;
+}
+
+header[b-hj7ki4kx8a] {
+    --header-height: 3.5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    height: 65px;
+    gap: 10px;
+    background-color: var(--app-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header div[b-hj7ki4kx8a] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+header button[b-hj7ki4kx8a] {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: transparent;
+    color: inherit;
+    border: 0;
+    font-size: 18pt;
+}
+
+[b-hj7ki4kx8a] button .oi-moon {
+    top: -2px;
+}
+
+[b-hj7ki4kx8a] .nav-toggler {
+    height: 36px;
+    width: 40px;
+}
+
+[b-hj7ki4kx8a] .icon-burguer {
+    --line-height: 2px;
+
+    padding: 8px;
+}
+
+section[b-hj7ki4kx8a] {
+    position: fixed;
+    height: 100%;
+    width: 350px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    background-color: var(--app-color);
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+section.hide[b-hj7ki4kx8a] {
+    transform: translate(-100%);
+}
+
+[b-hj7ki4kx8a] section a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0px 10px;
+    height: 2.5em; 
+    border-radius: 5px;
+    background-color: #ffffff1a;
+    text-decoration: none;
+    color: inherit;
+}
+
+[b-hj7ki4kx8a] section a:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: #ffffff5d;
+}
+
+[b-hj7ki4kx8a] section a.active {
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid;
+}
+
+.background[b-hj7ki4kx8a] {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background-color: #00000044;
+}
+
+.background.hide[b-hj7ki4kx8a] {
+    display: none;
+}
+
+section[b-hj7ki4kx8a], background[b-hj7ki4kx8a] {
+    transition: transform .25s;
+}
+
+.pointer:hover[b-hj7ki4kx8a] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/*.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.oi {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.nav-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item ::deep a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item ::deep a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item ::deep a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+   /*     display: block;
+    }
+    
+    .nav-scrollable {
+        /* Allow sidebar to scroll for tall menus */
+      /*  height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
+*/
+/* _content/NetCalculator.Common/Views/Pages/FLSM.razor.rz.scp.css */
+.output[b-e5mp964v6o] {
+    width: 100%;
+    max-width: 1000px;
+}
+/* _content/NetCalculator.Common/Views/Pages/Net.razor.rz.scp.css */
+
+/* _content/NetCalculator.Common/Views/Pages/VLSM.razor.rz.scp.css */
+th[b-tfpi4ar1ay], td[b-tfpi4ar1ay] {
+  padding: 5px;
+  text-align: left;
+  
+  text-align: center;
+}
+
+.failed[b-tfpi4ar1ay] {
+    /*color: red;*/
+}
+
+.failed td[b-tfpi4ar1ay] {
+    background-color: #ff000045;
+}
+
+.output[b-tfpi4ar1ay] {
+    width: 100%;
+    max-width: 1000px;
+}
