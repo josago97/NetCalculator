@@ -6,6 +6,6 @@
     protected override async Task OnInitializedAsync()
     {
         string lastUrl = await SettingsManager.GetLastPageAsync();
-        NavigationManager.NavigateTo(lastUrl);
+        NavigationManager.NavigateTo(lastUrl.Replace("/", ""));
     }
 }
