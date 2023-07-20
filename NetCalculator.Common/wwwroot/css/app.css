@@ -2,6 +2,10 @@
     --app-color: RoyalBlue;
 }
 
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 body {
     min-height: 100%;
     transition-property: background-color, color;
@@ -48,6 +52,67 @@ section.output {
 
 .output table {
     width: 100%;
+}
+
+
+
+
+
+
+
+table {
+    --border-color: #00000080;
+    --head-color: #C7DDFE;
+}
+
+.dark table {
+    --border-color: #ffffff80;
+    --head-color: #0A3271;
+}
+
+table thead {
+    background-color: var(--head-color);
+}
+
+table.subnets, table.subnets th, table.subnets td {
+    border: 2px solid var(--border-color);
+}
+
+@media (max-width: 800px) {
+    .output table.subnets {
+        display: flex;
+        overflow-x: auto;
+        justify-content: left;
+        border-spacing: 0;
+        white-space: nowrap;
+    }
+
+    .output table.subnets thead {
+        position: sticky;left: 0px;
+        float: left;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: 10px double var(--border-color);
+    }
+
+    .output table.subnets tr {
+        display: inline-block;
+    }
+
+    .output table.subnets th + th, .output table.subnets td + td {
+        border-top: 3px solid var(--border-color);
+    }
+
+    .output table.subnets tbody tr {
+        border-right: 3px solid var(--border-color);
+    }
+    
+    .output table.subnets th, .output table.subnets td {
+        display: block;
+        text-align: left;
+        border: 0px 5px 5px 5px solid var(--border-color);
+    }
 }
 
 /*=======================================*/

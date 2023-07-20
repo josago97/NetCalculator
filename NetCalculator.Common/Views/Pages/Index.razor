@@ -1,9 +1,11 @@
 ﻿@page "/"
 @inject NavigationManager NavigationManager
+@inject SettingsManager SettingsManager
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        NavigationManager.NavigateTo("/net");
+        string lastUrl = await SettingsManager.GetLastPageAsync();
+        NavigationManager.NavigateTo(lastUrl);
     }
 }

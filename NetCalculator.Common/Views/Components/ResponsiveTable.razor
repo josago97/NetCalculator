@@ -1,0 +1,27 @@
+﻿<table>
+    <thead>
+        <tr>
+            @foreach (string title in Titles)
+            {
+                <th>@title</th>
+            }
+        </tr>    
+    </thead>
+    <tbody>
+        @foreach (IEnumerable<object> row in Content)
+        {
+            <tr>
+                @foreach (object column in row)
+                {
+                    <td>@column</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter] public IEnumerable<string> Titles { get; set; }
+    [Parameter] public IEnumerable<IEnumerable<object>> Content { get; set; }
+}

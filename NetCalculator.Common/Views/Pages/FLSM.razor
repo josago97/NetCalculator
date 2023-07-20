@@ -46,34 +46,7 @@
         </p>
 
         <h5>Subredes</h5>
-        <table class="subnets">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Hosts</th>
-                    <th>Address</th>
-                    <th>Mask</th>
-                    <th>Primer Host</th>
-                    <th>Último Host</th>
-                    <th>Broadcast</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < @Result.Subnets.Count; i++)
-                {
-                    Subnet subnetOutput = Result.Subnets[i];
-                    <tr>
-                        <td>LAN @(i + 1)</td>
-                        <td>@subnetOutput.Hosts</td>
-                        <td>@subnetOutput.Address.Ip</td>
-                        <td>@Utils.MaskIntToString(subnetOutput.Address.Mask) (/@subnetOutput.Address.Mask)</td>
-                        <td>@subnetOutput.FirstAssignableAddress</td>
-                        <td>@subnetOutput.LastAssignableAddress</td>
-                        <td>@subnetOutput.Broadcast</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <ResponsiveTable Titles="SUBNET_RESULT_TABLE_TITLES" Content="GetSubnetResultTableContent()" />
     }
 </section>
 
@@ -81,6 +54,17 @@
     private const int MIN_SUBNET_COUNT = 1;
     private const int MIN_SUBNET_HOSTS = 1;
     private const int DEFAULT_SUBNET_INPUT_COUNT = 3;
+    private static readonly string[] SUBNET_RESULT_TABLE_TITLES =
+    {
+        "Name",
+        "Hosts",
+        "Address",
+        "Mask",
+        "Primer Host",
+        "Último Host",
+        "Broadcast"
+    };
+
     private int _subnetCount;
     private long _subnetHosts;
 
@@ -118,6 +102,29 @@
 
         Result = Calculator.Calculate(request);
         GoToResults();
+    }
+
+    private IEnumerable<IEnumerable<object>> GetSubnetResultTableContent()
+    {
+        List<object[]> result = new List<object[]>();
+
+        for (int i = 0; i < Result.Subnets.Count; i++)
+        {
+            Subnet subnetOutput = Result.Subnets[i];
+
+            result.Add(new object[]
+            {
+                $"LAN {i + 1}",
+                subnetOutput.Hosts,
+                subnetOutput.Address.Ip,
+                $"{Utils.MaskIntToString(subnetOutput.Address.Mask)} (/{subnetOutput.Address.Mask})",
+                subnetOutput.FirstAssignableAddress,
+                subnetOutput.LastAssignableAddress,
+                subnetOutput.Broadcast
+            });
+        }
+
+        return result;
     }
 }
 

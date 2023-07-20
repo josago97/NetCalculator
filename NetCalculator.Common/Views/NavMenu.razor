@@ -1,5 +1,4 @@
-﻿@inject JSInterop JSInterop
-@inject NavigationManager NavigationManager
+﻿@inject NavigationManager NavigationManager
 
 <nav>
     <header>
@@ -17,7 +16,7 @@
     </header>
 
     <section class="@NavMenuCssClass">
-        @foreach (KeyValuePair<string, string> route in ROUTES)
+        @foreach (KeyValuePair<string, string> route in Routes)
         {
             <NavLink class="nav-link" href="@route.Key" @onclick="CloseMenu">
                 @route.Value
@@ -29,19 +28,13 @@
 </nav>
 
 @code {
-    private static Dictionary<string, string> ROUTES = new Dictionary<string, string>()
-    {
-        { "net", "Red" },
-        { "flsm", "Máscara fija (FLSM)"},
-        { "vlsm", "Máscara variable (VLSM)"}
-    };
+    [Parameter] public Dictionary<string, string> Routes { get; set; }
+    [Parameter] public bool IsDarkMode { get; set; } = false;
+    [Parameter] public EventCallback<bool> IsDarkModeChanged { get; set; }
 
     private string Title { get; set; }
     private bool IsMenuCollapsed { get; set; } = true;
     private string NavMenuCssClass => IsMenuCollapsed ? "hide" : null;
-
-    [Parameter] public bool IsDarkMode { get; set; } = false;
-    [Parameter] public EventCallback<bool> IsDarkModeChanged { get; set; }
 
     protected override void OnInitialized()
     {
@@ -57,13 +50,6 @@
         OnLocationChanged(NavigationManager.Uri);
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-
-        await JSInterop.ChangeThemeAsync(IsDarkMode);
-    }
-
     private void CloseMenu()
     {
         IsMenuCollapsed = true;
@@ -73,7 +59,6 @@
     {
         IsDarkMode = !IsDarkMode;
         await IsDarkModeChanged.InvokeAsync(IsDarkMode);
-        await JSInterop.ChangeThemeAsync(IsDarkMode);
     }
 
     private void OnLocationChanged(object sender, LocationChangedEventArgs args)
@@ -86,7 +71,7 @@
     {
         string relativePath = NavigationManager.ToBaseRelativePath(location);
 
-        if (ROUTES.TryGetValue(relativePath, out string title))
+        if (Routes.TryGetValue(relativePath, out string title))
             Title = title;
         else
             Title = "Por defecto";

@@ -1,0 +1,48 @@
+﻿table {
+    text-align: center;
+}
+
+table th, table td {
+    padding: 0.3em 0.5em;
+}
+
+table, table th, table td {
+    border: 2px solid var(--border-color);
+}
+
+@media (max-width: 800px) {
+    table {
+        display: flex;
+        overflow-x: auto;
+        justify-content: left;
+        border-spacing: 0;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;left: 0px;
+        float: left;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: 10px double var(--border-color);
+    }
+
+    table tr {
+        display: inline-block;
+    }
+
+    table th + th, table td + td {
+        border-top: 3px solid var(--border-color);
+    }
+
+    table tbody tr {
+        border-right: 3px solid var(--border-color);
+    }
+    
+    table th, table td {
+        display: block;
+        text-align: left;
+        border: 0px 5px 5px 5px solid var(--border-color);
+    }
+}

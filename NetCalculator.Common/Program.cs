@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Blazored.LocalStorage;
+using Microsoft.Extensions.DependencyInjection;
 using NetCalculator.Common.Views;
 
 namespace NetCalculator.Common;
@@ -7,6 +8,8 @@ public class Program
 {
     public static void ConfigureServices(IServiceCollection services)
     {
-        services.AddScoped<JSInterop>();
+        services.AddSingleton<JSInterop>();
+        services.AddSingleton<SettingsManager>();
+        services.AddBlazoredLocalStorageAsSingleton();
     }
 }

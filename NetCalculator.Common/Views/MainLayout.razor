@@ -1,13 +1,49 @@
 ﻿@inherits LayoutComponentBase
+@inject JSInterop JSInterop
+@inject NavigationManager NavigationManager
+@inject SettingsManager SettingsManager
 
-<NavMenu @ref=NavMenu @bind-IsDarkMode="IsDarkMode" />
+<NavMenu Routes="ROUTES" IsDarkMode="DarkModeEnabled" IsDarkModeChanged="OnDarkModeChanged" />
 
 <main>
     @Body
 </main>
 
 @code {
+    private static Dictionary<string, string> ROUTES = new Dictionary<string, string>()
+    {
+        { "net", "Red" },
+        { "flsm", "Máscara fija (FLSM)"},
+        { "vlsm", "Máscara variable (VLSM)"}
+    };
 
-    private NavMenu NavMenu { get; set; }
-    private bool IsDarkMode { get; set; }
+    private bool DarkModeEnabled { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        DarkModeEnabled = await SettingsManager.GetDarkModeAsync();
+        await JSInterop.ChangeThemeAsync(DarkModeEnabled);
+
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private async void OnDarkModeChanged(bool darkModeEnabled)
+    {
+        DarkModeEnabled = darkModeEnabled;
+
+        await SettingsManager.SetDarkModeAsync(DarkModeEnabled);
+        await JSInterop.ChangeThemeAsync(DarkModeEnabled);
+    }
+
+    private async void OnLocationChanged(object sender, LocationChangedEventArgs args)
+    {
+        string relativePath = NavigationManager.ToBaseRelativePath(args.Location);
+
+        if (ROUTES.ContainsKey(relativePath))
+        {
+            await SettingsManager.SetLastPageAsync(relativePath);
+        }
+    }
 }
