@@ -1,20 +1,12 @@
-﻿using Blazored.LocalStorage;
+﻿namespace NetCalculator.Common;
 
-namespace NetCalculator.Common;
-
-internal class SettingsManager
+public abstract class SettingsManager
 {
     private const string DARK_MODE_KEY = "darkMode";
     private const bool DARK_MODE_DEFAULT = false;
+
     private const string LAST_PAGE_KEY = "lastPage";
     private const string LAST_PAGE_DEFAULT = "/net";
-
-    private readonly ILocalStorageService _localStorage;
-
-    public SettingsManager(ILocalStorageService localStorage)
-    {
-        _localStorage = localStorage;
-    }
 
     public async Task<bool> GetDarkModeAsync()
     {
@@ -23,7 +15,7 @@ internal class SettingsManager
 
     public async Task SetDarkModeAsync(bool darkModeEnabled)
     {
-        await _localStorage.SetItemAsync(DARK_MODE_KEY, darkModeEnabled);
+        await SetValueAsync(DARK_MODE_KEY, darkModeEnabled);
     }
 
     public async Task<string> GetLastPageAsync()
@@ -33,13 +25,10 @@ internal class SettingsManager
 
     public async Task SetLastPageAsync(string lastPage)
     {
-        await _localStorage.SetItemAsync(LAST_PAGE_KEY, lastPage);
+        await SetValueAsync(LAST_PAGE_KEY, lastPage);
     }
 
-    private async Task<T> GetValueAsync<T>(string key, T defaultValue)
-    {
-        return await _localStorage.ContainKeyAsync(key)
-            ? await _localStorage.GetItemAsync<T>(key)
-            : defaultValue;
-    }
+    protected abstract Task<T> GetValueAsync<T>(string key, T defaultValue);
+
+    protected abstract Task SetValueAsync<T>(string key, T value);
 }

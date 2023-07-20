@@ -1,6 +1,6 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using NetCalculator.Wasm;
 
 namespace NetCalculator.Wasm
 {
@@ -13,9 +13,17 @@ namespace NetCalculator.Wasm
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            Common.Program.ConfigureServices(builder.Services);
+            ConfigureServices(builder.Services);
 
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            Common.Program.ConfigureServices(services);
+
+            services.AddSingleton<Common.SettingsManager, SettingsManager>();
+            services.AddBlazoredLocalStorageAsSingleton();
         }
     }
 }
