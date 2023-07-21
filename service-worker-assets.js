@@ -97,7 +97,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-zGwzyS3IemL3C+\/sXqcx9UQDh7zjKGwzWcDQlgd+nPw=",
+      "hash": "sha256-CWtAEU2eKnh4wI7u841S683RMHUV81vSy5Uw67aiYrw=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -169,11 +169,11 @@
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll"
     },
     {
-      "hash": "sha256-dz7SKhMuTEvNF3yuCF5etmkjdY8aHvH0GHxKSA7zrbE=",
+      "hash": "sha256-Rom33dnuZ7xxuy5VE58TVYMJWG9ptTQv4dzBpcxdf2E=",
       "url": "_framework\/NetCalculator.Common.dll"
     },
     {
-      "hash": "sha256-5kLArVWpa+iyUtf1lyqp\/gBCklTHaxvX2AE8AIEM4V0=",
+      "hash": "sha256-dew9iVgWUKc45rb0jqu5ZHQARoUjWKXFH6+iZc17wzs=",
       "url": "_framework\/NetCalculator.Wasm.dll"
     },
     {
@@ -277,7 +277,7 @@
       "url": "_framework\/dotnet.7.0.9.axfytz6s5d.js"
     },
     {
-      "hash": "sha256-0dKkco3nkJrG\/M52401unKH4\/H8JjJS8X\/AC0z8py\/w=",
+      "hash": "sha256-ypRlKqyjaOQfJkE2txVtSbX9m\/NeqyimoFHxN4TMy8g=",
       "url": "_framework\/dotnet.wasm"
     },
     {
@@ -289,7 +289,7 @@
       "url": "_content\/Microsoft.AspNetCore.Components.QuickGrid\/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css"
     },
     {
-      "hash": "sha256-WYyiD\/JdhkbZ7YL1HiGQaHgwkl27jXFnaYwogyFgq08=",
+      "hash": "sha256-TOkqcZ7MvEMpJVpERybfOG79CaafesIgQW1oLmTgZHE=",
       "url": "_content\/NetCalculator.Common\/NetCalculator.Common.bundle.scp.css"
     },
     {
@@ -297,7 +297,7 @@
       "url": "_content\/Microsoft.AspNetCore.Components.QuickGrid\/QuickGrid.razor.js"
     },
     {
-      "hash": "sha256-+vlnlhVPJ28EkUvz3wkhjJjJuvM9Xsr4kYv+eU3dbpQ=",
+      "hash": "sha256-yfsAa+c0tGZk7WZI55uVtmwKFcbplrESKPZJVEhfSPg=",
       "url": "_content\/NetCalculator.Common\/css\/app.css"
     },
     {
@@ -305,9 +305,9 @@
       "url": "_content\/NetCalculator.Common\/js\/app.js"
     },
     {
-      "hash": "sha256-1NgIrpMOrlnAI\/iHp2WiucBem7XuhN98yAOVrnXsOdw=",
+      "hash": "sha256-vu\/jXsnf8QrLCjrF1Rf9o8dmAR6qr4moP1b5dR2n7Ts=",
       "url": "_content\/NetCalculator.Common\/js\/start.js"
     }
   ],
-  "version": "wOnQSNFc"
+  "version": "CdmGHDUu"
 };
