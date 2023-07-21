@@ -20,7 +20,8 @@ table, table th, table td {
     }
 
     table thead {
-        position: sticky;left: 0px;
+        position: sticky;
+        left: 0px;
         float: left;
         border-top: none;
         border-bottom: none;
@@ -33,11 +34,11 @@ table, table th, table td {
     }
 
     table th + th, table td + td {
-        border-top: 3px solid var(--border-color);
+        border-top: 2px solid var(--border-color);
     }
 
     table tbody tr {
-        border-right: 3px solid var(--border-color);
+        border-right: 2px solid var(--border-color);
     }
     
     table th, table td {

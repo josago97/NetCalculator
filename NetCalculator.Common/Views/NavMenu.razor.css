@@ -2,11 +2,12 @@ nav {
     color: white;
 }
 
-header {
+section.navbar {
     --header-height: 3.5rem;
 
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
@@ -14,11 +15,11 @@ header {
     height: 65px;
     gap: 10px;
     background-color: var(--app-color);
-    font-size: 1.5rem;
+    font-size: 1.4em;
     font-weight: bold;
 }
 
-header div {
+section.navbar div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,7 +27,7 @@ header div {
     gap: 10px;
 }
 
-header button {
+section.navbar button {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -51,7 +52,7 @@ header button {
     padding: 8px;
 }
 
-section {
+section.navList {
     position: fixed;
     height: 100%;
     width: 350px;
@@ -59,17 +60,16 @@ section {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 1000;
     background-color: var(--app-color);
     font-size: 1.15em;
     font-weight: bold;
 }
 
-section.hide {
+section.navList.hide {
     transform: translate(-100%);
 }
 
-::deep section a {
+::deep section.navList a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -81,13 +81,13 @@ section.hide {
     color: inherit;
 }
 
-::deep section a:hover {
+::deep section.navList a:hover {
     text-decoration: none;
     color: inherit;
     background-color: #ffffff5d;
 }
 
-::deep section a.active {
+::deep section.navList a.active {
     text-decoration: none;
     color: inherit;
     border: 2px solid;
@@ -105,7 +105,7 @@ section.hide {
     display: none;
 }
 
-section, background {
+section.navList, background {
     transition: transform .25s;
 }
 
@@ -113,73 +113,3 @@ section, background {
     transform: scale(1.2);
     cursor: pointer;
 }
-
-/*.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.top-row {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.navbar-brand {
-    font-size: 1.1rem;
-}
-
-.oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
-}
-
-.nav-item {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-}
-
-    .nav-item:first-of-type {
-        padding-top: 1rem;
-    }
-
-    .nav-item:last-of-type {
-        padding-bottom: 1rem;
-    }
-
-    .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
-
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
-
-.nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
-
-@media (min-width: 641px) {
-    .navbar-toggler {
-        display: none;
-    }
-
-    .collapse {
-        /* Never collapse the sidebar for wide screens */
-   /*     display: block;
-    }
-    
-    .nav-scrollable {
-        /* Allow sidebar to scroll for tall menus */
-      /*  height: calc(100vh - 3.5rem);
-        overflow-y: auto;
-    }
-}
-*/

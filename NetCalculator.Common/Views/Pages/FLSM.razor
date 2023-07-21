@@ -73,6 +73,13 @@
     private Calculator Calculator { get; set; } = new Calculator();
     private Response Result { get; set; }
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SubnetCount = DEFAULT_SUBNET_INPUT_COUNT;
+    }
+
     private void SetSubnetCount(int value)
     {
         _subnetCount = Math.Max(value, MIN_SUBNET_COUNT);

@@ -11,13 +11,13 @@
         <td>
             @if (UseCIDR)
             {
-                <InputText @bind-Value=NetAddressCIDR id="net" placeholder="192.168.1.0/24"
+                <InputText type="text" @bind-Value=NetAddressCIDR id="net" placeholder="192.168.1.0/24"
                            required minlength="9" maxlength="18" size="18"
                            pattern="@($"^{NET_ADDRESS_CIDR_REGEX}$")" title="X.X.X.X/X" />
             }
             else
             {
-                <InputText @bind-Value=IPAddress id="net" placeholder="192.168.1.0"
+                <InputText type="text" @bind-Value=IPAddress id="net" placeholder="192.168.1.0"
                            required minlength="7" maxlength="15" size="15"
                            pattern="@($"^{IP_ADDRESS_REGEX}$")" title="X.X.X.X" />
             }
@@ -46,10 +46,11 @@
                 @Localization.Localization.MaskLabel
             </td>
             <td>
-                <InputText @bind-Value=Mask id="mask" placeholder="255.255.255.0"
+                <InputText type="text" @bind-Value=Mask id="mask" placeholder="255.255.255.0"
                            required minlength="7" maxlength="15" size="15"
                            pattern="@($"^{IP_ADDRESS_REGEX}$")" title="X.X.X.X" />
             </td>
+            <td class="desktop"></td>
         </tr>
         <tr>
             <td colspan="3">

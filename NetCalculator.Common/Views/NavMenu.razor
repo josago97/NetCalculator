@@ -1,7 +1,9 @@
 ﻿@inject NavigationManager NavigationManager
 
 <nav>
-    <header>
+    <div class="background @NavMenuCssClass" @onclick="CloseMenu"></div>
+
+    <section class="navbar">
         <div>
             <span class="pointer">
                 <NavbarToggler @bind-IsMenuCollapsed="IsMenuCollapsed" />
@@ -13,9 +15,9 @@
                 <span class="oi oi-@(IsDarkMode ? "moon" : "sun")"></span>
             </button>
         </div>
-    </header>
+    </section>
 
-    <section class="@NavMenuCssClass">
+    <section class="navList @NavMenuCssClass">
         @foreach (KeyValuePair<string, string> route in Routes)
         {
             <NavLink class="nav-link" href="@route.Key" @onclick="CloseMenu">
@@ -23,8 +25,6 @@
             </NavLink>
         }
     </section>
-
-    <div class="background @NavMenuCssClass" @onclick="CloseMenu"></div>
 </nav>
 
 @code {

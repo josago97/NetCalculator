@@ -17,3 +17,13 @@
     width: 100%;
     max-width: 1000px;
 }
+
+::deep table.subnets input {
+    width: 100%;
+}
+
+/* TODO */
+div.addSubnetButton {
+    margin: 10px 0;
+    text-align: right;
+}
