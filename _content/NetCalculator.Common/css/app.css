@@ -1,29 +1,43 @@
 ﻿:root {
     --app-color: RoyalBlue;
+    --bg-color: white;
 }
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-body, .override {
+body {
     transition-property: background-color, color;
     transition-duration: 0.25s;
 
-    background-color: white;
+    background-color: var(--bg-color);
     color: black;
 }
 
 .dark {
     --app-color: DarkBlue;
-}
+    --bg-color: #333333;
 
-.dark, .dark .override {
-    background-color: #333333;
     color: white;
 }
 
+/*
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+*/
+
+.validation-message {
+    color: red;
+}
+
 /*============== Net Pages ==============*/
+
 section .title {
     text-align: center;
     margin-bottom: 12px;
@@ -32,7 +46,6 @@ section .title {
 section.input {
     margin-top: 10px;
 }
-
 
 section.input input[type="submit"] {
     display: block;
@@ -46,7 +59,6 @@ section.output {
 table input[type="text"], table input[type="number"] {
     width: 100%;
 }
-
 
 table {
     --border-color: #00000080;
@@ -68,6 +80,9 @@ table.subnets th, table.subnets td {
     border: 2px solid var(--border-color);
 }
 
+input[type="submit"] {
+    font-weight: bold;
+}
 
 /* =========== Responsive =========== */
 

@@ -29,73 +29,6 @@ tr + tr > td[b-4godh84p1p] {
         display: revert;
     }
 }
-/* _content/NetCalculator.Common/Views/Components/NavbarToggler.razor.rz.scp.css */
-
-/*=================== Navbar Toggler ==================*/
-
-.nav-toggler[b-two2d3ysh5] {
-    --icon-height: 100%;
-    --icon-width: 100%;
-    --line-height: 2px;
-
-    display: flex;
-    justify-content: center;
-    line-height: 1;
-    background-color: rgba(255, 255, 255, 0.25);
-    border: 2px solid white;
-    border-radius: 0.2em;
-    cursor: pointer;
-}
-
-/*========== Burguer Button =========*/
-
-.icon-burguer[b-two2d3ysh5] {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-}
-
-.icon-burguer > div[b-two2d3ysh5] {
-    position: relative;
-    height: var(--line-height);
-    background-color: #fff;
-    transition: 0.25s;
-    border-radius: var(--line-height);
-}
-
-/*============== Burguer Button Animation ================*/
-
-input[b-two2d3ysh5] {
-    display: none;
-    visibility: hidden;
-}
-
-input:checked ~ .icon-burguer[b-two2d3ysh5] {
-    justify-content: center;
-}
-
-input:checked ~ .icon-burguer > div[b-two2d3ysh5] {
-    --offset: var(--line-height);
-}
-
-input:checked ~ .icon-burguer > div:nth-child(1)[b-two2d3ysh5] {
-    transform: translateY(var(--offset)) rotate(45deg);
-}
-
-input:checked ~ .icon-burguer > div:nth-child(2)[b-two2d3ysh5] {
-    opacity: 0;
-}
-
-input:checked ~ .icon-burguer > div:nth-child(3)[b-two2d3ysh5] {
-    transform: translateY(calc(var(--offset) / -1)) rotate(-45deg);
-}
-
-/*=============================================*/
 /* _content/NetCalculator.Common/Views/Components/ResponsiveTable.razor.rz.scp.css */
 table[b-x5ymo50ekg] {
     text-align: center;
@@ -126,6 +59,7 @@ table[b-x5ymo50ekg], table th[b-x5ymo50ekg], table td[b-x5ymo50ekg] {
         border-bottom: none;
         border-left: none;
         border-right: 10px double var(--border-color);
+        background: var(--bg-color);
     }
 
     table tr[b-x5ymo50ekg] {
@@ -146,26 +80,137 @@ table[b-x5ymo50ekg], table th[b-x5ymo50ekg], table td[b-x5ymo50ekg] {
         border: 0px 5px 5px 5px solid var(--border-color);
     }
 }
-/* _content/NetCalculator.Common/Views/MainLayout.razor.rz.scp.css */
-header[b-l2z0my0rza] {
+/* _content/NetCalculator.Common/Views/Pages/FLSM.razor.rz.scp.css */
+.output[b-e5mp964v6o] {
+    width: 100%;
+    max-width: 1000px;
+}
+/* _content/NetCalculator.Common/Views/Pages/Net.razor.rz.scp.css */
+
+/* _content/NetCalculator.Common/Views/Pages/VLSM.razor.rz.scp.css */
+th[b-tfpi4ar1ay], td[b-tfpi4ar1ay] {
+  padding: 5px;  
+  text-align: center;
+}
+
+.oi:empty[b-tfpi4ar1ay]:before {
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+
+.output[b-tfpi4ar1ay] {
+    width: 100%;
+    max-width: 1000px;
+}
+
+[b-tfpi4ar1ay] .failed {
+    color: red;
+}
+
+.success[b-tfpi4ar1ay] {
+    color: green;
+}
+
+[b-tfpi4ar1ay] table.subnets input {
+    width: 100%;
+}
+
+.number-subnets[b-tfpi4ar1ay] {
+    margin: 10px 0;
+    text-align: center;
+}
+
+[b-tfpi4ar1ay] .number-subnets input {
+    width: 4em;
+}
+/* _content/NetCalculator.Common/Views/Shared/MainLayout.razor.rz.scp.css */
+header[b-amrg8urjya] {
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-main[b-l2z0my0rza] {
+main[b-amrg8urjya] {
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 10px;
     min-height: 100%;
 }
-/* _content/NetCalculator.Common/Views/NavMenu.razor.rz.scp.css */
-nav[b-hj7ki4kx8a] {
+/* _content/NetCalculator.Common/Views/Shared/NavbarToggler.razor.rz.scp.css */
+
+/*=================== Navbar Toggler ==================*/
+
+.nav-toggler[b-uyd1retisj] {
+    --icon-height: 100%;
+    --icon-width: 100%;
+    --line-height: 2px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 1;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+/*========== Burguer Button =========*/
+
+.icon-burguer[b-uyd1retisj] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.icon-burguer > div[b-uyd1retisj] {
+    position: relative;
+    height: var(--line-height);
+    background-color: #fff;
+    transition: 0.25s;
+    border-radius: var(--line-height);
+}
+
+/*============== Burguer Button Animation ================*/
+
+input[b-uyd1retisj] {
+    display: none;
+    visibility: hidden;
+}
+
+input:checked ~ .icon-burguer[b-uyd1retisj] {
+    justify-content: center;
+}
+
+input:checked ~ .icon-burguer > div[b-uyd1retisj] {
+    --offset: var(--line-height);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(1)[b-uyd1retisj] {
+    transform: translateY(var(--offset)) rotate(45deg);
+}
+
+input:checked ~ .icon-burguer > div:nth-child(2)[b-uyd1retisj] {
+    opacity: 0;
+}
+
+input:checked ~ .icon-burguer > div:nth-child(3)[b-uyd1retisj] {
+    transform: translateY(calc(var(--offset) / -1)) rotate(-45deg);
+}
+
+/*=============================================*/
+/* _content/NetCalculator.Common/Views/Shared/NavMenu.razor.rz.scp.css */
+nav[b-m7gf1sczdk] {
     color: white;
 }
 
-section.navbar[b-hj7ki4kx8a] {
+section.navbar[b-m7gf1sczdk] {
     --header-height: 3.5rem;
 
     display: flex;
@@ -182,7 +227,7 @@ section.navbar[b-hj7ki4kx8a] {
     font-weight: bold;
 }
 
-section.navbar div[b-hj7ki4kx8a] {
+section.navbar div[b-m7gf1sczdk] {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -190,7 +235,7 @@ section.navbar div[b-hj7ki4kx8a] {
     gap: 10px;
 }
 
-section.navbar button[b-hj7ki4kx8a] {
+section.navbar button[b-m7gf1sczdk] {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -200,22 +245,22 @@ section.navbar button[b-hj7ki4kx8a] {
     font-size: 18pt;
 }
 
-[b-hj7ki4kx8a] button .oi-moon {
+[b-m7gf1sczdk] button .oi-moon {
     top: -2px;
 }
 
-[b-hj7ki4kx8a] .nav-toggler {
+[b-m7gf1sczdk] .nav-toggler {
     height: 36px;
     width: 40px;
 }
 
-[b-hj7ki4kx8a] .icon-burguer {
+[b-m7gf1sczdk] .icon-burguer {
     --line-height: 2px;
 
     padding: 8px;
 }
 
-section.navList[b-hj7ki4kx8a] {
+section.navList[b-m7gf1sczdk] {
     position: fixed;
     height: 100%;
     width: 350px;
@@ -228,11 +273,11 @@ section.navList[b-hj7ki4kx8a] {
     font-weight: bold;
 }
 
-section.navList.hide[b-hj7ki4kx8a] {
+section.navList.hide[b-m7gf1sczdk] {
     transform: translate(-100%);
 }
 
-[b-hj7ki4kx8a] section.navList a {
+[b-m7gf1sczdk] section.navList a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -244,19 +289,19 @@ section.navList.hide[b-hj7ki4kx8a] {
     color: inherit;
 }
 
-[b-hj7ki4kx8a] section.navList a:hover {
+[b-m7gf1sczdk] section.navList a:hover {
     text-decoration: none;
     color: inherit;
     background-color: #ffffff5d;
 }
 
-[b-hj7ki4kx8a] section.navList a.active {
+[b-m7gf1sczdk] section.navList a.active {
     text-decoration: none;
     color: inherit;
     border: 2px solid;
 }
 
-.background[b-hj7ki4kx8a] {
+.background[b-m7gf1sczdk] {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -264,52 +309,15 @@ section.navList.hide[b-hj7ki4kx8a] {
     background-color: #00000044;
 }
 
-.background.hide[b-hj7ki4kx8a] {
+.background.hide[b-m7gf1sczdk] {
     display: none;
 }
 
-section.navList[b-hj7ki4kx8a], background[b-hj7ki4kx8a] {
+section.navList[b-m7gf1sczdk], background[b-m7gf1sczdk] {
     transition: transform .25s;
 }
 
-.pointer:hover[b-hj7ki4kx8a] {
+.pointer:hover[b-m7gf1sczdk] {
     transform: scale(1.2);
     cursor: pointer;
-}
-/* _content/NetCalculator.Common/Views/Pages/FLSM.razor.rz.scp.css */
-.output[b-e5mp964v6o] {
-    width: 100%;
-    max-width: 1000px;
-}
-/* _content/NetCalculator.Common/Views/Pages/Net.razor.rz.scp.css */
-
-/* _content/NetCalculator.Common/Views/Pages/VLSM.razor.rz.scp.css */
-th[b-tfpi4ar1ay], td[b-tfpi4ar1ay] {
-  padding: 5px;
-  text-align: left;
-  
-  text-align: center;
-}
-
-.failed[b-tfpi4ar1ay] {
-    /*color: red;*/
-}
-
-.failed td[b-tfpi4ar1ay] {
-    background-color: #ff000045;
-}
-
-.output[b-tfpi4ar1ay] {
-    width: 100%;
-    max-width: 1000px;
-}
-
-[b-tfpi4ar1ay] table.subnets input {
-    width: 100%;
-}
-
-/* TODO */
-div.addSubnetButton[b-tfpi4ar1ay] {
-    margin: 10px 0;
-    text-align: right;
 }
