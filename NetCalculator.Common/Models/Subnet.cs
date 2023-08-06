@@ -5,7 +5,7 @@ public class Subnet
     private const int RESERVED_ADDRESS_COUNT = BaseCalculator.RESERVED_ADDRESS_COUNT;
 
     public NetAddress Address { get; init; }
-    public uint Size => Address.Size;
+    public ulong Size => Address.Size;
     public uint Hosts => Address.Hosts;
     public IPv4Address? FirstAssignableAddress { get; protected set; }
     public IPv4Address? LastAssignableAddress { get; protected set; }

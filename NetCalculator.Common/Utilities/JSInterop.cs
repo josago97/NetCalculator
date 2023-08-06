@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace NetCalculator.Common.Views;
+namespace NetCalculator.Common.Utilities;
 
 public class JSInterop : IAsyncDisposable
 {

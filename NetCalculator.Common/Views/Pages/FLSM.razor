@@ -3,50 +3,50 @@
 @inherits BaseNetPage
 
 <section class="input">
-    <h3 class="title">Entrada</h3>
+    <h3 class="title">@Localization.Input</h3>
     <EditForm Model="this" OnValidSubmit="Calculate">
         <DataAnnotationsValidator />
         <div>
-            <h5>Red principal</h5>
+            <h5>@Localization.MajorNetwork</h5>
             <InputNetAddress @bind-Value=NetAddress />
         </div>
         <br />
         <div>
-            <h5>Subredes</h5>
+            <h5>@Localization.Subnets</h5>
             <table>
                 <tr>
-                    <td>Cantidad</td>
+                    <td>@Localization.Size</td>
                     <td>
                         <InputNumber @bind-Value=SubnetCount min="1" />
                     </td>
                 </tr>
                 <tr>
-                    <td>Dispositivos</td>
+                    <td>@Localization.Hosts</td>
                     <td>
                         <InputNumber @bind-Value=SubnetHosts min="1" />
                     </td>
                 </tr>
             </table>
         </div>
-        <input type="submit" value="CalculateLabel" />
+        <input type="submit" value="@Localization.Calculate" />
     </EditForm>
 </section>
 
 <section id="@RESULT_ID" class="output">
     @if (Result != null)
     {
-        <h3 class="title">Resultado</h3>
+        <h3 class="title">@Localization.Result</h3>
         <p>
-            <h5>Red principal</h5>
-            IP red: @Result.NetAddress.Ip
+            <h5>@Localization.MajorNetwork</h5>
+            @Localization.NetIp: @Result.NetAddress.Ip
             <br />
-            Máscara: @Utils.MaskIntToString(Result.NetAddress.Mask) (/@Result.NetAddress.Mask)
+            @Localization.Mask: @Utils.MaskIntToString(Result.NetAddress.Mask) (/@Result.NetAddress.Mask)
             <br />
-            Available IP addresses in major network: @Result.NetAddress.Size
+            @Localization.AvailableAddressesMajorNetwork: @Result.NetAddress.Size
         </p>
 
-        <h5>Subredes</h5>
-        <ResponsiveTable Titles="SUBNET_RESULT_TABLE_TITLES" Content="GetSubnetResultTableContent()" />
+        <h5>@Localization.Subnets</h5>
+        <ResponsiveTable Titles="SUBNET_RESULT_TABLE_TITLES" Rows="GetSubnetResultTableRows()" />
     }
 </section>
 
@@ -56,12 +56,12 @@
     private const int DEFAULT_SUBNET_INPUT_COUNT = 3;
     private static readonly string[] SUBNET_RESULT_TABLE_TITLES =
     {
-        "Name",
-        "Hosts",
-        "Address",
-        "Mask",
-        "Primer Host",
-        "Último Host",
+        Localization.Name,
+        Localization.Hosts,
+        Localization.Address,
+        Localization.Mask,
+        Localization.FirstHost,
+        Localization.LastHost,
         "Broadcast"
     };
 
@@ -95,7 +95,7 @@
 
         long subnetSize = _subnetHosts + Calculator.RESERVED_ADDRESS_COUNT;
         int bitsNeeded = (int)Math.Ceiling(Math.Log2(subnetSize));
-        int mask = 32 - bitsNeeded;
+        int mask = Calculator.BITS_PER_ADDRESS - bitsNeeded;
         _subnetCount = (int)Math.Pow(2, mask - NetAddress.Value.Mask);
     }
 
@@ -111,24 +111,28 @@
         GoToResults();
     }
 
-    private IEnumerable<IEnumerable<object>> GetSubnetResultTableContent()
+    private IEnumerable<ResponsiveTable.Row> GetSubnetResultTableRows()
     {
-        List<object[]> result = new List<object[]>();
+        List<ResponsiveTable.Row> result = new List<ResponsiveTable.Row>();
 
         for (int i = 0; i < Result.Subnets.Count; i++)
         {
             Subnet subnetOutput = Result.Subnets[i];
-
-            result.Add(new object[]
+            ResponsiveTable.Row row = new ResponsiveTable.Row()
             {
-                $"LAN {i + 1}",
-                subnetOutput.Hosts,
-                subnetOutput.Address.Ip,
-                $"{Utils.MaskIntToString(subnetOutput.Address.Mask)} (/{subnetOutput.Address.Mask})",
-                subnetOutput.FirstAssignableAddress,
-                subnetOutput.LastAssignableAddress,
-                subnetOutput.Broadcast
-            });
+                Columns = new object[]
+                {
+                    $"LAN {i + 1}",
+                    subnetOutput.Hosts,
+                    subnetOutput.Address.Ip,
+                    $"{Utils.MaskIntToString(subnetOutput.Address.Mask)} (/{subnetOutput.Address.Mask})",
+                    subnetOutput.FirstAssignableAddress,
+                    subnetOutput.LastAssignableAddress,
+                    subnetOutput.Broadcast
+                }
+            };
+
+            result.Add(row);
         }
 
         return result;

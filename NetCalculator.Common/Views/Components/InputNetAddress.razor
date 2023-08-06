@@ -6,7 +6,7 @@
 <table>
     <tr>
         <td>
-            @Localization.Localization.NetLabel
+            @Localization.NetIp
         </td>
         <td>
             @if (UseCIDR)
@@ -24,7 +24,7 @@
         </td>
         <td class="desktop">
             <InputCheckbox @bind-Value=UseCIDR />
-            @Localization.Localization.UseCIDRLabel
+            @Localization.UseCIDR
         </td>
     </tr>
     <tr>
@@ -43,7 +43,7 @@
     {
         <tr>
             <td>
-                @Localization.Localization.MaskLabel
+                @Localization.Mask
             </td>
             <td>
                 <InputText type="text" @bind-Value=Mask id="mask" placeholder="255.255.255.0"
@@ -64,7 +64,7 @@
         <td></td>
         <td colspan="2">
             <InputCheckbox @bind-Value=UseCIDR />
-            @Localization.Localization.UseCIDRLabel
+            @Localization.UseCIDR
         </td>
     </tr>
 
@@ -139,7 +139,7 @@
         string mask = ipAndMask[1];
         if (!int.TryParse(mask, out int maskValue) || (maskValue < 0 || maskValue > 32))
         {
-            string errorMessage = string.Format(Localization.Localization.MaskCIDROutOfRange, "[0 - 32]");
+            string errorMessage = string.Format(Localization.MaskCIDROutOfRange, "[0 - 32]");
             ValidationMessages.Add(accessor, errorMessage);
             isCorrect = false;
         }
@@ -172,7 +172,7 @@
 
             if (!isNumber || (byteValue < 0 || byteValue > byte.MaxValue))
             {
-                string errorMessage = string.Format(Localization.Localization.ByteOutOfRangeError, i, "[0 - 255]");
+                string errorMessage = string.Format(Localization.ByteOutOfRangeError, i, "[0 - 255]");
                 ValidationMessages.Add(accessor, errorMessage);
                 isCorrect = false;
             }
@@ -180,7 +180,7 @@
             else if (isMask && !MASK_BYTE_VALUES.Contains(byteValue))
             {
                 string binary = Convert.ToString(byteValue, 2);
-                string errorMessage = string.Format(Localization.Localization.MaskByteInvalidValueError, i, binary);
+                string errorMessage = string.Format(Localization.MaskByteInvalidValueError, i, binary);
                 ValidationMessages.Add(accessor, errorMessage);
                 isCorrect = false;
             }

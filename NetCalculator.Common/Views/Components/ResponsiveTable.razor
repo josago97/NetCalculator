@@ -1,5 +1,5 @@
 ﻿<table>
-    <thead class="override">
+    <thead>
         <tr>
             @foreach (string title in Titles)
             {
@@ -8,10 +8,10 @@
         </tr>    
     </thead>
     <tbody>
-        @foreach (IEnumerable<object> row in Content)
+        @foreach (Row row in Rows)
         {
-            <tr>
-                @foreach (object column in row)
+            <tr class="@row.CssClass">
+                @foreach (object column in row.Columns)
                 {
                     <td>@column</td>
                 }
@@ -23,5 +23,11 @@
 
 @code {
     [Parameter] public IEnumerable<string> Titles { get; set; }
-    [Parameter] public IEnumerable<IEnumerable<object>> Content { get; set; }
+    [Parameter] public IEnumerable<Row> Rows { get; set; }
+
+    public class Row
+    {
+        public IEnumerable<object> Columns { get; init; }
+        public string CssClass { get; init; }
+    }
 }

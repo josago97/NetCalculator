@@ -2,48 +2,47 @@
 @using NetCalculator.Common.Models.Netting;
 @inherits BaseNetPage
 
-
 <section class="input">
-    <h3 class="title">Entrada</h3>
+    <h3 class="title">@Localization.Input</h3>
     <EditForm Model="this" OnValidSubmit="Calculate">
         <DataAnnotationsValidator />
         <InputNetAddress @bind-Value=NetAddress />
-        <input type="submit" value="@Localization.Localization.CalculateLabel" />
+        <input type="submit" value="@Localization.Calculate" />
     </EditForm>
 </section>
 
 <section id="@RESULT_ID" class="output">
     @if (Result != null)
     {
-        <h3 class="title">Resultado</h3>
+        <h3 class="title">@Localization.Result</h3>
 
         <p>
-            <h5>Dirección de red</h5>
-            IP red: @Result.Address.Ip
+            <h5>@Localization.NetAddress</h5>
+            @Localization.NetIp: @Result.Address.Ip
             <br/>
-            Máscara: @Utils.MaskIntToString(Result.Address.Mask) (/@Result.Address.Mask)
+            @Localization.Mask: @Utils.MaskIntToString(Result.Address.Mask) (/@Result.Address.Mask)
         </p>
 
         <p>
-            <h5>Puerta de enlace predeterminada</h5>
+            <h5>@Localization.DefaultGateway</h5>
             @Result.DefaultGatewayAddress
         </p>
 
         <p>
-            <h5>Dirección de broadcast</h5>
+            <h5>@Localization.BroadcastAddress</h5>
             @Result.Broadcast
         </p>
 
         <p>
-            <h5>Rango de hosts</h5>
+            <h5>@Localization.HostRange</h5>
             <table>
                 <tr>
                     <td>
-                        <h6>Desde</h6>
+                        <h6>@Localization.From</h6>
                         @Result.FirstAssignableAddress
                     </td>
                     <td>
-                        <h6>Hasta</h6>
+                        <h6>@Localization.To</h6>
                         @Result.LastAssignableAddress
                     </td>
                 </tr>

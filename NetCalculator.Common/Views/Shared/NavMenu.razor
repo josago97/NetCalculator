@@ -74,6 +74,6 @@
         if (Routes.TryGetValue(relativePath, out string title))
             Title = title;
         else
-            Title = "Por defecto";
+            Title = Localization.AppName;
     }
 }

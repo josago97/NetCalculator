@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NetLabel" xml:space="preserve">
+  <data name="NetIp" xml:space="preserve">
     <value>IP red</value>
   </data>
-  <data name="MaskLabel" xml:space="preserve">
+  <data name="Mask" xml:space="preserve">
     <value>Máscara</value>
   </data>
-  <data name="CalculateLabel" xml:space="preserve">
+  <data name="Calculate" xml:space="preserve">
     <value>Calcular</value>
   </data>
   <data name="ByteOutOfRangeError" xml:space="preserve">
@@ -135,16 +135,91 @@
   <data name="MaskCIDROutOfRange" xml:space="preserve">
     <value>La máscara está fuera del rango permitido {0}</value>
   </data>
-  <data name="UseCIDRLabel" xml:space="preserve">
+  <data name="UseCIDR" xml:space="preserve">
     <value>Usar CIDR</value>
   </data>
-  <data name="FirstAssignableAddress" xml:space="preserve">
-    <value>Primera dirección asignable</value>
-  </data>
-  <data name="BroadcastDirection" xml:space="preserve">
+  <data name="BroadcastAddress" xml:space="preserve">
     <value>Dirección broadcast</value>
   </data>
-  <data name="LastAssignableDirection" xml:space="preserve">
-    <value>Última dirección asignable</value>
+  <data name="Input" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="Net" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="NetAddress" xml:space="preserve">
+    <value>Dirección de red</value>
+  </data>
+  <data name="DefaultGateway" xml:space="preserve">
+    <value>Puerta de enlace predeterminada</value>
+  </data>
+  <data name="HostRange" xml:space="preserve">
+    <value>Rango de hosts</value>
+  </data>
+  <data name="FixedMask" xml:space="preserve">
+    <value>Máscara fija</value>
+  </data>
+  <data name="VariableMask" xml:space="preserve">
+    <value>Máscara variable</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="MajorNetwork" xml:space="preserve">
+    <value>Red principal</value>
+  </data>
+  <data name="Subnets" xml:space="preserve">
+    <value>Subredes</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="Hosts" xml:space="preserve">
+    <value>Hosts</value>
+  </data>
+  <data name="FirstHost" xml:space="preserve">
+    <value>Primer host</value>
+  </data>
+  <data name="LastHost" xml:space="preserve">
+    <value>Último host</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="AvailableAddressesMajorNetwork" xml:space="preserve">
+    <value>Direcciones IP disponibles en la red principal</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="NumberSubnets" xml:space="preserve">
+    <value>Número de subredes</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Cambiar</value>
+  </data>
+  <data name="NumberAddressesNeeded" xml:space="preserve">
+    <value>Número de direcciones IP pedidas</value>
+  </data>
+  <data name="AvailableAddressesSubnets" xml:space="preserve">
+    <value>Direcciones IP disponibles en subredes asignadas</value>
+  </data>
+  <data name="SuccessfulOperation" xml:space="preserve">
+    <value>Operación exitosa</value>
+  </data>
+  <data name="FailedOperation" xml:space="preserve">
+    <value>Operación fallada</value>
+  </data>
+  <data name="MajorNetworkIp" xml:space="preserve">
+    <value>IP de la red principal</value>
+  </data>
+  <data name="MajorNetworkMask" xml:space="preserve">
+    <value>Máscara de la red principal</value>
   </data>
 </root>

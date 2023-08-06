@@ -27,6 +27,7 @@ table, table th, table td {
         border-bottom: none;
         border-left: none;
         border-right: 10px double var(--border-color);
+        background: var(--bg-color);
     }
 
     table tr {

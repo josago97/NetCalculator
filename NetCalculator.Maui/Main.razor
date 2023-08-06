@@ -1,10 +1,10 @@
-﻿<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="new[] { typeof(NetCalculator.Common.Views.MainLayout).Assembly }">
+﻿<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="new[] { typeof(NetCalculator.Common.Views.Shared.MainLayout).Assembly }">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(NetCalculator.Common.Views.MainLayout)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(NetCalculator.Common.Views.Shared.MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(NetCalculator.Common.Views.MainLayout)">
+        <LayoutView Layout="@typeof(NetCalculator.Common.Views.Shared.MainLayout)">
             <p role="alert">Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>

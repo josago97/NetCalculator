@@ -14,9 +14,9 @@
 @code {
     private static Dictionary<string, string> ROUTES = new Dictionary<string, string>()
     {
-        { "net", "Red" },
-        { "flsm", "Máscara fija (FLSM)"},
-        { "vlsm", "Máscara variable (VLSM)"}
+        { "net", Localization.Net },
+        { "flsm", $"{Localization.FixedMask} (FLSM)"},
+        { "vlsm", $"{Localization.VariableMask} (VLSM)"}
     };
 
     private bool DarkModeEnabled { get; set; }

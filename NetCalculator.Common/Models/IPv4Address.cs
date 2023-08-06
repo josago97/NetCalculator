@@ -21,10 +21,10 @@ public struct IPv4Address
     {
     }
 
-    public IPv4Address Add(uint amount)
+    public IPv4Address Add(ulong amount)
     {
         uint address = BitConverter.ToUInt32(_address, 0);
-        address = address + amount;
+        address = (uint)(address + amount);
         byte[] resultAddress = BitConverter.GetBytes(address);
 
         return new IPv4Address(resultAddress, false);

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using NetCalculator.Common.Models;
+using NetCalculator.Common.Utilities;
 
 namespace NetCalculator.Common.Views.Pages;
 

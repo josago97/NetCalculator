@@ -1,16 +1,12 @@
 ﻿th, td {
-  padding: 5px;
-  text-align: left;
-  
+  padding: 5px;  
   text-align: center;
 }
 
-.failed {
-    /*color: red;*/
-}
-
-.failed td {
-    background-color: #ff000045;
+.oi:empty:before {
+    position: relative;
+    top: 1px;
+    left: 1px;
 }
 
 .output {
@@ -18,12 +14,23 @@
     max-width: 1000px;
 }
 
+::deep .failed {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
 ::deep table.subnets input {
     width: 100%;
 }
 
-/* TODO */
-div.addSubnetButton {
+.number-subnets {
     margin: 10px 0;
-    text-align: right;
+    text-align: center;
+}
+
+::deep .number-subnets input {
+    width: 4em;
 }

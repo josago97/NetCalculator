@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using NetCalculator.Common.Views;
+using NetCalculator.Common.Utilities;
 
 namespace NetCalculator.Common;
 
@@ -7,6 +7,6 @@ public class Program
 {
     public static void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<JSInterop>();
+        services.AddScoped<JSInterop>();
     }
 }

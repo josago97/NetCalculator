@@ -4,6 +4,7 @@ public class SubnetResponse : Subnet
 {
     public string Name { get; init; }
     public uint NeededSize { get; init; }
+    public bool Overflow { get; init; }
 
     public SubnetResponse(NetAddress address) : base(address)
     {

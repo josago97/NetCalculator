@@ -6,7 +6,7 @@ public struct NetAddress
 
     public IPv4Address Ip { get; init; }
     public int Mask { get; init; }
-    public uint Size { get; init; }
+    public ulong Size { get; init; }
     public uint Hosts { get; init; }
 
     public static NetAddress Parse(string cidr)
@@ -37,8 +37,8 @@ public struct NetAddress
         Ip = ip;
         Mask = mask;
 
-        Size = (uint)Math.Pow(2, 32 - Mask);
-        Hosts = Size - RESERVED_ADDRESS_COUNT;
+        Size = (ulong)Math.Pow(2, 32 - Mask);
+        Hosts = (uint)(Size - RESERVED_ADDRESS_COUNT);
     }
 
     public NetAddress(string ip, int mask) : this(new IPv4Address(ip), mask)

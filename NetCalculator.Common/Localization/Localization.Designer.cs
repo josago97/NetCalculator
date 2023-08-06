@@ -61,6 +61,15 @@ namespace NetCalculator.Common.Localization {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Net calculator.
         /// </summary>
         public static string AppName {
@@ -70,11 +79,29 @@ namespace NetCalculator.Common.Localization {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Available IP addresses in major network.
+        /// </summary>
+        public static string AvailableAddressesMajorNetwork {
+            get {
+                return ResourceManager.GetString("AvailableAddressesMajorNetwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Available IP addresses in allocated subnets.
+        /// </summary>
+        public static string AvailableAddressesSubnets {
+            get {
+                return ResourceManager.GetString("AvailableAddressesSubnets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Broadcast direction.
         /// </summary>
-        public static string BroadcastDirection {
+        public static string BroadcastAddress {
             get {
-                return ResourceManager.GetString("BroadcastDirection", resourceCulture);
+                return ResourceManager.GetString("BroadcastAddress", resourceCulture);
             }
         }
         
@@ -90,27 +117,135 @@ namespace NetCalculator.Common.Localization {
         /// <summary>
         ///   Busca una cadena traducida similar a Calculate.
         /// </summary>
-        public static string CalculateLabel {
+        public static string Calculate {
             get {
-                return ResourceManager.GetString("CalculateLabel", resourceCulture);
+                return ResourceManager.GetString("Calculate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a First assignable direction.
+        ///   Busca una cadena traducida similar a Change.
         /// </summary>
-        public static string FirstAssignableAddress {
+        public static string Change {
             get {
-                return ResourceManager.GetString("FirstAssignableAddress", resourceCulture);
+                return ResourceManager.GetString("Change", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Last assignable direction.
+        ///   Busca una cadena traducida similar a Default gateway.
         /// </summary>
-        public static string LastAssignableDirection {
+        public static string DefaultGateway {
             get {
-                return ResourceManager.GetString("LastAssignableDirection", resourceCulture);
+                return ResourceManager.GetString("DefaultGateway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Failed operation.
+        /// </summary>
+        public static string FailedOperation {
+            get {
+                return ResourceManager.GetString("FailedOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a First host.
+        /// </summary>
+        public static string FirstHost {
+            get {
+                return ResourceManager.GetString("FirstHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fixed mask.
+        /// </summary>
+        public static string FixedMask {
+            get {
+                return ResourceManager.GetString("FixedMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a From.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Host range.
+        /// </summary>
+        public static string HostRange {
+            get {
+                return ResourceManager.GetString("HostRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hosts.
+        /// </summary>
+        public static string Hosts {
+            get {
+                return ResourceManager.GetString("Hosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Input.
+        /// </summary>
+        public static string Input {
+            get {
+                return ResourceManager.GetString("Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Last host.
+        /// </summary>
+        public static string LastHost {
+            get {
+                return ResourceManager.GetString("LastHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Major network.
+        /// </summary>
+        public static string MajorNetwork {
+            get {
+                return ResourceManager.GetString("MajorNetwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Major network IP.
+        /// </summary>
+        public static string MajorNetworkIp {
+            get {
+                return ResourceManager.GetString("MajorNetworkIp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Major network mask.
+        /// </summary>
+        public static string MajorNetworkMask {
+            get {
+                return ResourceManager.GetString("MajorNetworkMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mask.
+        /// </summary>
+        public static string Mask {
+            get {
+                return ResourceManager.GetString("Mask", resourceCulture);
             }
         }
         
@@ -133,29 +268,119 @@ namespace NetCalculator.Common.Localization {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Mask.
+        ///   Busca una cadena traducida similar a Name.
         /// </summary>
-        public static string MaskLabel {
+        public static string Name {
             get {
-                return ResourceManager.GetString("MaskLabel", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Net.
+        /// </summary>
+        public static string Net {
+            get {
+                return ResourceManager.GetString("Net", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Net address.
+        /// </summary>
+        public static string NetAddress {
+            get {
+                return ResourceManager.GetString("NetAddress", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a Net IP.
         /// </summary>
-        public static string NetLabel {
+        public static string NetIp {
             get {
-                return ResourceManager.GetString("NetLabel", resourceCulture);
+                return ResourceManager.GetString("NetIp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Number of IP addresses needed.
+        /// </summary>
+        public static string NumberAddressesNeeded {
+            get {
+                return ResourceManager.GetString("NumberAddressesNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Number of subnets.
+        /// </summary>
+        public static string NumberSubnets {
+            get {
+                return ResourceManager.GetString("NumberSubnets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Result.
+        /// </summary>
+        public static string Result {
+            get {
+                return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Size.
+        /// </summary>
+        public static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Subnets.
+        /// </summary>
+        public static string Subnets {
+            get {
+                return ResourceManager.GetString("Subnets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Successful operation.
+        /// </summary>
+        public static string SuccessfulOperation {
+            get {
+                return ResourceManager.GetString("SuccessfulOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a To.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a Use CIDR.
         /// </summary>
-        public static string UseCIDRLabel {
+        public static string UseCIDR {
             get {
-                return ResourceManager.GetString("UseCIDRLabel", resourceCulture);
+                return ResourceManager.GetString("UseCIDR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Variable mask.
+        /// </summary>
+        public static string VariableMask {
+            get {
+                return ResourceManager.GetString("VariableMask", resourceCulture);
             }
         }
     }

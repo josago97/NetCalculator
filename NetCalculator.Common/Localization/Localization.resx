@@ -120,13 +120,13 @@
   <data name="AppName" xml:space="preserve">
     <value>Net calculator</value>
   </data>
-  <data name="NetLabel" xml:space="preserve">
+  <data name="NetIp" xml:space="preserve">
     <value>Net IP</value>
   </data>
-  <data name="MaskLabel" xml:space="preserve">
+  <data name="Mask" xml:space="preserve">
     <value>Mask</value>
   </data>
-  <data name="CalculateLabel" xml:space="preserve">
+  <data name="Calculate" xml:space="preserve">
     <value>Calculate</value>
   </data>
   <data name="ByteOutOfRangeError" xml:space="preserve">
@@ -138,16 +138,91 @@
   <data name="MaskCIDROutOfRange" xml:space="preserve">
     <value>Mask is out of allowed range {0}</value>
   </data>
-  <data name="UseCIDRLabel" xml:space="preserve">
+  <data name="UseCIDR" xml:space="preserve">
     <value>Use CIDR</value>
   </data>
-  <data name="FirstAssignableAddress" xml:space="preserve">
-    <value>First assignable direction</value>
-  </data>
-  <data name="BroadcastDirection" xml:space="preserve">
+  <data name="BroadcastAddress" xml:space="preserve">
     <value>Broadcast direction</value>
   </data>
-  <data name="LastAssignableDirection" xml:space="preserve">
-    <value>Last assignable direction</value>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="NetAddress" xml:space="preserve">
+    <value>Net address</value>
+  </data>
+  <data name="DefaultGateway" xml:space="preserve">
+    <value>Default gateway</value>
+  </data>
+  <data name="HostRange" xml:space="preserve">
+    <value>Host range</value>
+  </data>
+  <data name="FixedMask" xml:space="preserve">
+    <value>Fixed mask</value>
+  </data>
+  <data name="VariableMask" xml:space="preserve">
+    <value>Variable mask</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="MajorNetwork" xml:space="preserve">
+    <value>Major network</value>
+  </data>
+  <data name="Subnets" xml:space="preserve">
+    <value>Subnets</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Hosts" xml:space="preserve">
+    <value>Hosts</value>
+  </data>
+  <data name="FirstHost" xml:space="preserve">
+    <value>First host</value>
+  </data>
+  <data name="LastHost" xml:space="preserve">
+    <value>Last host</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AvailableAddressesMajorNetwork" xml:space="preserve">
+    <value>Available IP addresses in major network</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="NumberSubnets" xml:space="preserve">
+    <value>Number of subnets</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="NumberAddressesNeeded" xml:space="preserve">
+    <value>Number of IP addresses needed</value>
+  </data>
+  <data name="AvailableAddressesSubnets" xml:space="preserve">
+    <value>Available IP addresses in allocated subnets</value>
+  </data>
+  <data name="SuccessfulOperation" xml:space="preserve">
+    <value>Successful operation</value>
+  </data>
+  <data name="FailedOperation" xml:space="preserve">
+    <value>Failed operation</value>
+  </data>
+  <data name="MajorNetworkIp" xml:space="preserve">
+    <value>Major network IP</value>
+  </data>
+  <data name="MajorNetworkMask" xml:space="preserve">
+    <value>Major network mask</value>
   </data>
 </root>
