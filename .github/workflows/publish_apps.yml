@@ -1,0 +1,38 @@
+name: Publish multiplatform apps
+
+# Declaring custom variables
+env:
+  PROJECT_NAME: NetCalculator.Maui
+  RELEASE_FOLDER: release
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    # use ubuntu-latest image to run steps on
+    runs-on: ubuntu-latest
+    
+    steps:
+    # uses GitHub's checkout action to checkout code form the master branch
+    - uses: actions/checkout@v3 
+
+    # Build project to the release-folder
+    - name: Build .NET Project
+      run: |
+        dotnet publish $PROJECT_NAME/$PROJECT_NAME.csproj -f net7.0-android -c Release -o $fullPath
+        
+        IFS=' ' read -ra runtimes <<< "${{ env.OPERATIVE_SYSTEM_RUNTIMES }}"
+        IFS=' ' read -ra folders <<< "${{ env.OPERATIVE_SYSTEM_FOLDERS }}"
+        releaseFolder=${{env.RELEASE_FOLDER}}
+        for (( i=0; i<${#runtimes[@]}; i++ )); do
+          runtime=${runtimes[i]}
+          folder=${folders[i]}
+          fullPath=${releaseFolder}/${folder}
+          dotnet publish $PROJECT_NAME/$PROJECT_NAME.csproj -r $runtime -c Release -o $fullPath --nologo --self-contained true /p:PublishSingleFile=true /p:DebugType=None /p:DebugSymbols=false
+          cd $fullPath
+          zip -r ../${folder}.zip *
+          cd ../..
+        done
